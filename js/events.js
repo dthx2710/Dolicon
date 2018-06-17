@@ -56,7 +56,7 @@ function calculate(){
 		totalComfort += comfort;
 	}
 	totalBatts = InitialBatts+((11*totalComfort)/10000)-((0.1*(Math.pow(totalComfort,2)))/100000000);
-	resultBox.placeholder="You will receive " + totalBatts + " batteries per 24 hours!";
+	resultBox.placeholder="You will receive " + totalBatts + "(±2) batteries per 24 hours!";
 	resultBox.style.display="block";
 }
 
@@ -64,4 +64,4 @@ function calculate(){
 
 
 /*(2-10 dorms : 50, 85, 95, 99, 101, 102, 102.5, 103, 103.5) + 11(sum of comfort)/10000-0.1(sum of comfort)^2/100000000
-batteries you can collect daily, maximum error range ±*/
+batteries you can collect daily, maximum error range ±2*/
