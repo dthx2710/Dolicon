@@ -12,3 +12,4 @@ To do list:
 - Data Calculator
 - EXP Calculator
 - Doll/EQ crafting recipe
+Send ideas if you have any!
