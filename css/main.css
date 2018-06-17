@@ -1,0 +1,19 @@
+.pink{
+	background:#ffdae9;
+}
+
+#calculateBtn{
+	margin:0 0 0 5px;
+}
+
+.optionaldorm{
+	display:none;
+}
+
+#result{
+	display:none;
+	border: solid #f17aff 0.5px;
+	background:#f0ddff;
+	font-weight: 500;
+	font-style: italic;
+}
