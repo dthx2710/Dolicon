@@ -63,5 +63,5 @@ function calculate(){
 
 
 
-/*(2-10 dorms : 50, 85, 95, 99, 101, 102, 102.5, 103, 103.5) + 11(sum of comfort)/10000-0.1(sum of comfort)^2/100000000
+/*(2-10 dorms : 50, 85, 95, 99, 101, 102, 102.5, 103, 103.5) + 11(sum of comfort)/10000-(0.1(sum of comfort)^2)/100000000
 batteries you can collect daily, maximum error range ±2*/
