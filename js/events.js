@@ -56,7 +56,7 @@ function calculate(){
 		totalComfort += comfort;
 	}
 	totalBatts = InitialBatts+((11*totalComfort)/10000)-((0.1*(Math.pow(totalComfort,2)))/100000000);
-	resultBox.placeholder="You will receive " + totalBatts + "(±2) batteries per 24 hours!";
+	resultBox.placeholder="You will receive " + (Math.round(totalBatts * 100) / 100) + "(±2) batteries per 24 hours!";
 	resultBox.style.display="block";
 }
 
