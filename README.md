@@ -1,7 +1,10 @@
 # Dolicon's stuff
 
 Beginner @ web dev, picking up the basics as I go.
+
 Mainly focusing on Girl's Frontline utilities/content atm.
+
+nbsp;
 
 To do list:
 - Navbar & general layout using bootstrap ✔
