@@ -181,7 +181,8 @@ function data(){
 		var before = slBefore.selectedIndex;
 		var after = slAfter.selectedIndex;
 		var name = dollName.value;
-		var count = document.getElementById("dollCount").value||1;
+		var count = document.getElementById("dollCount").selectedIndex||1;
+		console.log(count);
 		var basic = 0;
 		var int = 0;
 		var adv = 0;
@@ -209,7 +210,7 @@ function data(){
 				}
 				addRow(name,basic,int,adv,hours);
 				dollName.value = "";
-				document.getElementById("dollCount").value = "";
+				document.getElementById("dollCount").selectedIndex=0;
 				name = ""
 				calculate();
 			}
