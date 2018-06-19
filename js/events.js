@@ -94,8 +94,8 @@ function data(){
 	var addBtn = document.getElementById("addBtn");
 	var clearBtn = document.getElementById("clearBtn");
 	var dataTable = document.getElementById("dataTable");
-	var dataArray = [['basic',100],['basic',200],['basic',300],
-	['int',120],['int',200],['int',300],['int',400],['adv',200],['adv',300]];
+	var dataArray = [['basic',100,1],['basic',200,2],['basic',300,3],
+	['int',120,4],['int',200,6],['int',300,9],['int',400,12],['adv',200,18],['adv',300,24]];
 	var dataTableBody= dataTable.getElementsByTagName('tbody')[0];
 	var dataTableFooter = dataTable.getElementsByTagName('tfoot')[0];
 
@@ -107,7 +107,7 @@ function data(){
 		//only display options larger than before
 	}
 
-	function addRow(dollname,basicdata,intdata,advdata)
+	function addRow(dollname,basicdata,intdata,advdata,hours)
 	{
 		dataTableBody= dataTable.getElementsByTagName('tbody')[0];
 		var row = dataTableBody.insertRow(dataTableBody.rows.length);
@@ -116,16 +116,19 @@ function data(){
 		var basicCell = row.insertCell(1);		
 		var intCell = row.insertCell(2);
 		var advCell = row.insertCell(3);
+		var hoursCell = row.insertCell(4);
 
 		var dollNode = document.createTextNode(dollname);
 		var basicNode = document.createTextNode(basicdata);
 		var intNode = document.createTextNode(intdata);
 		var advNode = document.createTextNode(advdata);
+		var hoursNode = document.createTextNode(hours);
 
 		dollCell.appendChild(dollNode);
 		basicCell.appendChild(basicNode);
 		intCell.appendChild(intNode);
 		advCell.appendChild(advNode);
+		hoursCell.appendChild(hoursNode);
 
 	}
 
@@ -137,12 +140,14 @@ function data(){
 		dataTableFooter.rows[0].cells[1].innerHTML="–";
 		dataTableFooter.rows[0].cells[2].innerHTML="–";
 		dataTableFooter.rows[0].cells[3].innerHTML="–";
+		dataTableFooter.rows[0].cells[4].innerHTML="–";
 	}
 
 	function calculate(){
 		var totalBasic = 0;
 		var totalInt = 0;
 		var totalAdv = 0;
+		var totalHours = 0;
 		for (var i = 0, row; row = dataTableBody.rows[i]; ++i) {
 		   for (var j = 0, col; col = row.cells[j]; j++) {
 		   		if (j==0)
@@ -161,11 +166,16 @@ function data(){
 		   		{
 		   			totalAdv += parseFloat(col.innerHTML);
 		   		}
+		   		else if (j==4)
+		   		{
+		   			totalHours += parseFloat(col.innerHTML);
+		   		}
 		   }
 		}
 		dataTableFooter.rows[0].cells[1].innerHTML=totalBasic;
 		dataTableFooter.rows[0].cells[2].innerHTML=totalInt;
 		dataTableFooter.rows[0].cells[3].innerHTML=totalAdv;
+		dataTableFooter.rows[0].cells[4].innerHTML=totalHours;
 	}
 
 	addBtn.onclick=function(){
@@ -176,6 +186,7 @@ function data(){
 		var basic = 0;
 		var int = 0;
 		var adv = 0;
+		var hours = 0;
 		//separating data
 
 		if (before<=after&&before>0&&count<11){
@@ -190,13 +201,14 @@ function data(){
 				else if(i[0]=='adv'){
 					adv+=i[1];
 				}
+				hours+=i[2];
 			})
 
 			for (var i=0;i<count;++i){
 				if (!name){
 					name = "Doll "+ ((dataTable.rows.length)-1).toString();
 				}
-				addRow(name,basic,int,adv);
+				addRow(name,basic,int,adv,hours);
 				dollName.value = "";
 				document.getElementById("dollCount").value = "";
 				name = ""
