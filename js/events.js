@@ -111,7 +111,6 @@ function data(){
 	{
 		dataTableBody= dataTable.getElementsByTagName('tbody')[0];
 		var row = dataTableBody.insertRow(dataTableBody.rows.length);
-
 		var dollCell = row.insertCell(0);
 		var basicCell = row.insertCell(1);		
 		var intCell = row.insertCell(2);
@@ -231,6 +230,7 @@ function craft(){
 
 }
 
+//--------------------------------------------------------------------------------------------------------------------------------------
 //page railroad switch
 switch (pageId){
 	case 0:
