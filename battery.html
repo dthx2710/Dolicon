@@ -8,7 +8,7 @@
 		<link rel="stylesheet" href="css/main.css">
 	</head>
 
-	<body class="pink">
+	<body>
 		<header class="bg-dark">
 			<div class="container">
 				<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -39,7 +39,10 @@
 					        <a class="nav-link disabled" href="#">Data</a>
 					      </li>
 					      <li class="nav-item">
-					        <a class="nav-link disabled" href="#">Crafts</a>
+					        <a class="nav-link disabled" href="#">Core</a>
+					      </li>
+					      <li class="nav-item">
+					        <a class="nav-link disabled" href="#">Craft</a>
 					      </li>
 					</div>
 				</nav>
@@ -49,7 +52,7 @@
 		<main>
 			<br>
 			<div class="container">
-				<form>
+				<form class="container">
 					<div class="form-group">
 					    <label for="dormCount"><em>Number of Dorms:</em></label>
 					    <select class="form-control col-sm-1" id="dormCount" >
@@ -105,13 +108,14 @@
 					    <input type="number" class="form-control col-sm-2 dorm optionaldorm" id="dorm10" placeholder="Dorm 10">
 					</div>
 					<div class="citation">Formula provided by Crab from Karboots GF discord</div>
-					<button id="calculateBtn" type="button" class="btn btn-lg btn-outline-secondary" data-toggle="tooltip" data-placement="right" title="Formula: (2-10 dorms : 50, 85, 95, 99, 101, 102, 102.5, 103, 103.5) + 11(sum of comfort)/10000-(0.1(sum of comfort)^2/100000000)">Calculate</button>
+					<button id="calculateBtn" type="submit" class="btn btn-lg btn-outline-secondary" data-toggle="tooltip" data-placement="right" title="Formula: (2-10 dorms : 50, 85, 95, 99, 101, 102, 102.5, 103, 103.5) + 11(sum of comfort)/10000-(0.1(sum of comfort)^2/100000000)">Calculate</button>
 					<br><br>
 					<input id="result" class="form-control col-sm-6" type="text" placeholder="" readonly>
 				</form>
 			</div>
 		</main>
-
+		
+		<script>var pageId=1</script>
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>

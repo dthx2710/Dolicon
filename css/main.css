@@ -1,9 +1,15 @@
-.pink{
-	background:#ffdae9;
+body {
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+   font-weight: 300;
+   background:#ffdae9;
 }
 
 #calculateBtn{
-	margin:0 0 0 3px;
+	margin:0 0 0 5px;
+}
+
+#addBtn{
+	margin:0 0 0 5px;
 }
 
 .optionaldorm{
@@ -24,7 +30,19 @@
 	font-style: italic;
 }
 
-body {
-   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
-   font-weight: 300;
+#dollcolumn{
+	padding:0 0 20 12;
+	text-align: center;
+}
+
+.dataicon{
+    margin-bottom:3;
+}
+
+.center{
+	text-align: center;
+}
+
+.solidborder{
+	border: solid #343a40 1px;
 }
