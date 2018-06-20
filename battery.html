@@ -4,8 +4,8 @@
 		<title>Battery Calculator</title>
 		<link rel="shortcut icon" href="images/favicon.ico">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="css/main.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 
 	<body>
@@ -13,12 +13,12 @@
 			<div class="container">
 				<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 				  <a class="navbar-brand" href="index.html">
-				  	<img src="images/brand.png" width="40" height="40" alt=""> DoliGF
+				  	<img src="images/brand.png" width="40" height="40  class="d-inline-block align-mid" alt=""> DoliGF
 				  </a>
 				  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				    <span class="navbar-toggler-icon"></span>
 				  </button>
-					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<div class="collapse navbar-collapse pl-5" id="navbarSupportedContent">
 					    <ul class="navbar-nav mr-auto">
 					      <!--
 					      CURRENT
@@ -39,11 +39,29 @@
 					        <a class="nav-link" href="data.html">Data</a>
 					      </li>
 					      <li class="nav-item">
-					        <a class="nav-link disabled" href="#">Core</a>
+					        <a class="nav-link" href="core.html">Core</a>
 					      </li>
 					      <li class="nav-item">
 					        <a class="nav-link disabled" href="#">Craft</a>
 					      </li>
+					      <li class="nav-item dropdown">
+					        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					          Resources
+					        </a>
+					        <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
+					          <a class="dropdown-item whitetext" target="_blank" href="https://docs.google.com/spreadsheets/d/1oqI-3zSNDWor10OeKH1uac3zXDRF5Ckpo2yPrMI5sLg/htmlview?sle=true#">Doll Analysis Spreadsheet</a>
+					          <a class="dropdown-item whitetext" target="_blank" href="http://dmesse.egloos.com/3567918">Popular Levelling Routes</a>
+					          <a class="dropdown-item whitetext" target="_blank" href="https://docs.google.com/document/d/1itF-T3nXGixmM21zlkxg3kdd3WFdX-DNJk0X-DqNUoU/preview">All-in-One Encyclopedia</a>
+					          <a class="dropdown-item whitetext" target="_blank" href="https://www.reddit.com/r/girlsfrontline/comments/8q8mka/girls_frontline_en_uncensor_guide/">EN Uncensor Patch</a>
+					          <a class="dropdown-item disabled" target="" href="#">Corpse Dragging Basics</a>
+					          <a class="dropdown-item whitetext" target="_blank" href="https://cdn.discordapp.com/attachments/434610007858872321/443645817157582848/girls_frontline_v3.png">bible.png</a>
+					          <a class="dropdown-item whitetext" target="_blank" href="
+					          https://discordapp.com/invite/5cVT49v"><img src="images/karboots.png" width="35" height="35" class="d-inline-block align-mid" alt="">
+					      		Karboots Discord</a>
+					          <a class="dropdown-item citation whitetext" href="#">* Credits to the respective authors</a>
+					        </div>
+					      </li>
+					    </ul>
 					</div>
 				</nav>
 			</div>
@@ -108,7 +126,7 @@
 					    <input type="number" class="form-control col-sm-2 dorm optionaldorm" id="dorm10" placeholder="Dorm 10">
 					</div>
 					<div class="citation">Formula provided by Crab from Karboots GF discord</div>
-					<button id="calculateBtn" type="button" class="btn btn-lg btn-outline-secondary" data-toggle="tooltip" data-placement="right" title="Formula: (2-10 dorms : 50, 85, 95, 99, 101, 102, 102.5, 103, 103.5) + 11(sum of comfort)/10000-(0.1(sum of comfort)^2/100000000)">Calculate</button>
+					<button id="calculateBtn" type="button" class="mt-2 btn btn-lg btn-outline-secondary" data-toggle="tooltip" data-placement="right" title="Formula: (2-10 dorms : 50, 85, 95, 99, 101, 102, 102.5, 103, 103.5) + 11(sum of comfort)/10000-(0.1(sum of comfort)^2/100000000)">Calculate</button>
 					<br><br>
 					<input id="result" class="form-control col-sm-6" type="text" placeholder="" readonly>
 				</form>
