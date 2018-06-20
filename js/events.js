@@ -107,7 +107,7 @@ function data(){
 		//only display options larger than before
 	}
 
-	function addRow(dollname,basicdata,intdata,advdata,hours)
+	function addRow(dollname,basicdata,intdata,advdata,hours,energy)
 	{
 		dataTableBody= dataTable.getElementsByTagName('tbody')[0];
 		var row = dataTableBody.insertRow(dataTableBody.rows.length);
@@ -116,18 +116,21 @@ function data(){
 		var intCell = row.insertCell(2);
 		var advCell = row.insertCell(3);
 		var hoursCell = row.insertCell(4);
+		var energyCell = row.insertCell(5);
 
 		var dollNode = document.createTextNode(dollname);
 		var basicNode = document.createTextNode(basicdata);
 		var intNode = document.createTextNode(intdata);
 		var advNode = document.createTextNode(advdata);
 		var hoursNode = document.createTextNode(hours);
+		var energyNode = document.createTextNode(energy);
 
 		dollCell.appendChild(dollNode);
 		basicCell.appendChild(basicNode);
 		intCell.appendChild(intNode);
 		advCell.appendChild(advNode);
 		hoursCell.appendChild(hoursNode);
+		energyCell.appendChild(energyNode);
 
 	}
 
@@ -140,6 +143,7 @@ function data(){
 		dataTableFooter.rows[0].cells[2].innerHTML="–";
 		dataTableFooter.rows[0].cells[3].innerHTML="–";
 		dataTableFooter.rows[0].cells[4].innerHTML="–";
+		dataTableFooter.rows[0].cells[5].innerHTML="–";
 	}
 
 	function calculate(){
@@ -147,6 +151,7 @@ function data(){
 		var totalInt = 0;
 		var totalAdv = 0;
 		var totalHours = 0;
+		var totalEnergy = 0;
 		for (var i = 0, row; row = dataTableBody.rows[i]; ++i) {
 		   for (var j = 0, col; col = row.cells[j]; j++) {
 		   		if (j==0)
@@ -169,12 +174,17 @@ function data(){
 		   		{
 		   			totalHours += parseFloat(col.innerHTML);
 		   		}
+		   		else if (j==5){
+		   			totalEnergy += parseFloat(col.innerHTML);
+		   		}
 		   }
 		}
+		totalEnergy = (Math.round(totalEnergy * 100) / 100);
 		dataTableFooter.rows[0].cells[1].innerHTML=totalBasic;
 		dataTableFooter.rows[0].cells[2].innerHTML=totalInt;
 		dataTableFooter.rows[0].cells[3].innerHTML=totalAdv;
 		dataTableFooter.rows[0].cells[4].innerHTML=totalHours;
+		dataTableFooter.rows[0].cells[5].innerHTML=totalEnergy;
 	}
 
 	addBtn.onclick=function(){
@@ -186,6 +196,7 @@ function data(){
 		var int = 0;
 		var adv = 0;
 		var hours = 0;
+		var energy = 0;
 		//separating data
 
 		if (before<=after&&before>0&&count<11){
@@ -207,7 +218,12 @@ function data(){
 				if (!name){
 					name = "Doll "+ ((dataTable.rows.length)-1).toString();
 				}
-				addRow(name,basic,int,adv,hours);
+				energy += (basic/(215/1));
+		   		energy += (int/(98/2));
+		   		energy += (adv/(53/3));
+		   		energy = (Math.round(energy * 100) / 100);
+		   		console.log(energy);
+				addRow(name,basic,int,adv,hours,energy);
 				dollName.value = "";
 				document.getElementById("dollCount").selectedIndex=0;
 				name = ""
