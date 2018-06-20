@@ -57,7 +57,7 @@ body,.pink {
 }
 
 #dollcolumn{
-	padding:0 0 22 ;
+	padding:0 0 22 0;
 	text-align: center;
 }
 
@@ -68,4 +68,20 @@ body,.pink {
 
 .dataicon{
     margin-bottom:3;
+}
+
+/*Core*/
+#rarityheader{
+	padding:0 0 22 ;
+	text-align: center;
+}
+
+#currentlinkheader{
+	padding:0 0 22 ;
+	text-align: center;
+}
+
+#goallinkheader{
+	padding:0 0 22 ;
+	text-align: center;
 }

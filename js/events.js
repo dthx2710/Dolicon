@@ -182,7 +182,6 @@ function data(){
 		var after = slAfter.selectedIndex;
 		var name = dollName.value;
 		var count = document.getElementById("dollCount").selectedIndex||1;
-		console.log(count);
 		var basic = 0;
 		var int = 0;
 		var adv = 0;
@@ -221,6 +220,97 @@ function data(){
 //--------------------------------------------------------------------------------------------------------------------------------------
 //cores.html
 function core(){
+	var dollName = document.getElementById("dollName");
+	var linkBefore = document.getElementById("linkBefore");
+	var linkAfter = document.getElementById("linkAfter");
+	var dollRarity = document.getElementById("dollRarity");
+	var dollCount = document.getElementById("dollCount");
+	var addBtn = document.getElementById("addBtn");
+	var clearBtn = document.getElementById("clearBtn");
+	var coreTable = document.getElementById("coreTable");
+	var rarityArray = [1,3,9,15];
+	var linkArray = [1,1,2,3];
+	var coreTableBody= coreTable.getElementsByTagName('tbody')[0];
+	var coreTableFooter = coreTable.getElementsByTagName('tfoot')[0];
+
+	linkBefore.onchange=function(){
+		//only display options smaller than after
+	}
+
+	linkAfter.onchange=function(){
+		//only display options larger than before
+	}
+
+	function addRow(dollname,rarity,linkbefore,linkafter,core)
+	{
+		coreTableBody= coreTable.getElementsByTagName('tbody')[0];
+		var row = coreTableBody.insertRow(coreTableBody.rows.length);
+		var dollCell = row.insertCell(0);
+		var rarityCell = row.insertCell(1);		
+		var beforeCell = row.insertCell(2);
+		var afterCell = row.insertCell(3);
+		var coreCell = row.insertCell(4);
+
+		var dollNode = document.createTextNode(dollname);
+		var rarityNode = document.createTextNode(rarity);
+		var beforeNode = document.createTextNode(linkbefore);
+		var afterNode = document.createTextNode(linkafter);
+		var coreNode = document.createTextNode(core);
+
+		dollCell.appendChild(dollNode);
+		rarityCell.appendChild(rarityNode);
+		beforeCell.appendChild(beforeNode);
+		afterCell.appendChild(afterNode);
+		coreCell.appendChild(coreNode);
+
+	}
+
+	clearBtn.onclick=function(){
+		coreTableBody = coreTable.getElementsByTagName('tbody')[0];
+		var new_tbody = document.createElement('tbody');
+		new_tbody.className = "center";
+		coreTableBody.parentNode.replaceChild(new_tbody, coreTableBody);
+		coreTableFooter.rows[0].cells[4].innerHTML="–";
+	}
+
+	function calculate(){
+		var totalCores = 0;
+		for (var i = 0, row; row = coreTableBody.rows[i]; ++i) {
+		   totalCores += parseFloat(row.cells[4].innerHTML);
+		}
+		coreTableFooter.rows[0].cells[4].innerHTML=totalCores;
+	}
+
+	addBtn.onclick=function(){
+		var before = linkBefore.selectedIndex;
+		var after = linkAfter.selectedIndex;
+		var name = dollName.value;
+		var rarity = (document.getElementById("dollRarity").selectedIndex||1)+1;
+		console.log(document.getElementById("dollRarity").selectedIndex);
+		var count = document.getElementById("dollCount").selectedIndex||1;
+		var cores = 0;
+		//separating core
+
+		if (before<=after&&before>0&&count<11){
+			var requiredLinkArray = linkArray.slice(before-1,after);
+			console.log(requiredLinkArray);
+			requiredLinkArray.forEach(i=>{
+				cores += i*rarityArray[rarity-2];
+				console.log(cores);
+			})
+			for (var i=0;i<count;++i){
+				if (!name){
+					name = "Doll "+ ((coreTable.rows.length)-1).toString();
+				}
+				addRow(name,rarity+"*","x"+before,"x"+(after+1),cores);
+				dollName.value = "";
+				document.getElementById("dollCount").selectedIndex=0;
+				name = ""
+				calculate();
+			}
+		}
+	}
+
 
 }
 

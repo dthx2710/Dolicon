@@ -1,0 +1,178 @@
+<!doctyppe html>
+<html>
+	<head>
+		<title>COREHELL</title>
+		<link rel="shortcut icon" href="images/favicon.ico">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+		<link rel="stylesheet" href="css/main.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+
+	<body>
+		<header class="bg-dark">
+			<div class="container">
+				<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+				  <a class="navbar-brand" href="index.html">
+				  	<img src="images/brand.png" width="40" height="40"  class="d-inline-block align-mid alt=""> DoliGF
+				  </a>
+				  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				    <span class="navbar-toggler-icon"></span>
+				  </button>
+					<div class="collapse navbar-collapse pl-5" id="navbarSupportedContent">
+					    <ul class="navbar-nav mr-auto">
+					      <!--
+					      CURRENT
+					      <li class="nav-item active">
+					        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+					      </li>
+					      ACTIVE
+					      <li class="nav-item">
+					        <a class="nav-link" href="#">Links</a>
+					      </li>-->
+					      <li class="nav-item">
+					        <a class="nav-link" href="battery.html">Battery</a>
+					      </li>
+					      <li class="nav-item">
+					        <a class="nav-link disabled" href="#">EXP</a>
+					      </li>
+					      <li class="nav-item">
+					        <a class="nav-link" href="data.html">Data</a>
+					      </li>
+					      <li class="nav-item active">
+					        <a class="nav-link" href="#">Core <span class="sr-only">(current)</span></a>
+					      </li>
+					      <li class="nav-item">
+					        <a class="nav-link disabled" href="#">Craft</a>
+					      </li>
+					      <li class="nav-item dropdown">
+					        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					          Resources
+					        </a>
+					        <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
+					          <a class="dropdown-item whitetext" target="_blank" href="https://docs.google.com/spreadsheets/d/1oqI-3zSNDWor10OeKH1uac3zXDRF5Ckpo2yPrMI5sLg/htmlview?sle=true#">Doll Analysis Spreadsheet</a>
+					          <a class="dropdown-item whitetext" target="_blank" href="http://dmesse.egloos.com/3567918">Popular Levelling Routes</a>
+					          <a class="dropdown-item whitetext" target="_blank" href="https://docs.google.com/document/d/1itF-T3nXGixmM21zlkxg3kdd3WFdX-DNJk0X-DqNUoU/preview">All-in-One Encyclopedia</a>
+					          <a class="dropdown-item whitetext" target="_blank" href="https://www.reddit.com/r/girlsfrontline/comments/8q8mka/girls_frontline_en_uncensor_guide/">EN Uncensor Patch</a>
+					          <a class="dropdown-item disabled" target="" href="#">Corpse Dragging Basics</a>
+					          <a class="dropdown-item whitetext" target="_blank" href="https://cdn.discordapp.com/attachments/434610007858872321/443645817157582848/girls_frontline_v3.png">bible.png</a>
+					          <a class="dropdown-item whitetext" target="_blank" href="
+					          https://discordapp.com/invite/5cVT49v"><img src="images/karboots.png" width="35" height="35" class="d-inline-block align-mid" alt="">
+					      		Karboots Discord</a>
+					          <a class="dropdown-item citation whitetext" href="#">* Credits to the respective authors</a>
+					        </div>
+					      </li>
+					    </ul>
+					</div>
+				</nav>
+			</div>
+		</header>
+
+		<main>
+			<br>
+			<div class="container">
+				<form class="container">
+					<div class="form-group row">
+						<div class="col-4">
+							<input type="text" maxlength="20" class="form-control" id="dollName" placeholder="Doll Name">
+						</div>
+						<div class="col-2">
+						    <select class="form-control" id="dollRarity" >
+							    <option selected disabled>Rarity</option>
+								<option>2*</option>
+								<option>3*</option>
+								<option>4*</option>
+								<option>5*</option>
+							</select>
+						</div>
+						<div class="col-2">
+						    <select class="form-control" id="dollCount" >
+							    <option selected disabled>Count</option>
+							    <option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+								<option>6</option>
+								<option>7</option>
+								<option>8</option>
+								<option>9</option>
+								<option>10</option>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<div class="input-group mb-3">
+							  <div class="input-group-prepend">
+							    <label class="input-group-text" for="linkBefore">X</label>
+							  </div>
+							  <select class="custom-select" id="linkBefore">
+							    <option selected disabled>Current</option>
+							    <option value="1">1</option>
+							    <option value="2">2</option>
+							    <option value="3">3</option>
+							    <option value="4">4</option>
+							  </select>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="input-group mb-3">
+							  <div class="input-group-prepend">
+							    <label class="input-group-text" for="linkAfter">X</label>
+							  </div>
+							  <select class="custom-select" id="linkAfter">
+							    <option selected disabled>Goal</option>
+							    <option value="2">2</option>
+							    <option value="3">3</option>
+							    <option value="4">4</option>
+							    <option value="5">5</option>
+							  </select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-1">
+							<button id="addBtn" type="button" class="btn btn-md btn-outline-primary">Add</button>
+						</div>
+					</div>
+				</form>
+				<br>
+				<div class="table-responsive container col-lg-8 float-left">
+					<table class="solidborder table table-borderless table-hover" id="coreTable">
+					  <thead class="thead-dark">
+					    <tr>
+					      <th id="dollcolumn" scope="col">Doll</th>
+					      <th id="rarityheader" scope="col">Rarity</th>
+					      <th id="currentlinkheader" scope="col">Current Link</th>
+					      <th id="goallinkheader" scope="col">Goal Link</th>
+					      <th id="" scope="col"><img src="images/core.png" class="img-fluid dataicon" alt="Core" width="30">  Cores</th>
+					    </tr>
+					  </thead>
+					  <tfoot class="center">
+					  	<tr class="solidborder">
+					      <th scope="row">Total Required:</th>
+					      <td></td>
+					      <td></td>
+					      <td></td>
+					      <td>–</td>
+					    </tr>
+					  </tfoot>
+					  <tbody class="center">
+					  </tbody>
+					</table>
+					<div class="">
+						<button id="clearBtn" type="Reset" class="btn btn-md btn-outline-danger">Clear</button>
+					</div>
+				</div>
+			</div>
+
+		</main>
+
+		<script>var pageId=4</script>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+		<script src=js/events.js></script>
+	</body>
+
+</html>
