@@ -191,7 +191,7 @@ function data(){
 		var before = slBefore.selectedIndex;
 		var after = slAfter.selectedIndex;
 		var name = dollName.value;
-		var count = document.getElementById("dollCount").selectedIndex||1;
+		var count = document.getElementById("dollCount").selectedIndex+1;
 		var basic = 0;
 		var int = 0;
 		var adv = 0;
@@ -301,9 +301,8 @@ function core(){
 		var before = linkBefore.selectedIndex;
 		var after = linkAfter.selectedIndex;
 		var name = dollName.value;
-		var rarity = (document.getElementById("dollRarity").selectedIndex||1)+1;
-		console.log(document.getElementById("dollRarity").selectedIndex);
-		var count = document.getElementById("dollCount").selectedIndex||1;
+		var rarity = document.getElementById("dollRarity").selectedIndex+2;
+		var count = document.getElementById("dollCount").selectedIndex+1;
 		var cores = 0;
 		//separating core
 
