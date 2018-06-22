@@ -14,6 +14,7 @@ To do list:
 - Doll/EQ crafting recipe (dropped/TBA)
 - Resources navbar ddl ✔
 - Karboots discord invite ✔
+- Add more maps for exp calculator
 Send ideas if you have any!
 
 22 June 2018:
