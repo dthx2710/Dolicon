@@ -1,9 +1,10 @@
 <!doctyppe html>
 <html>
 	<head>
-		<title>COREHELL</title>
+		<title>EXP Calculator</title>
 		<link rel="shortcut icon" href="images/favicon.ico">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.0-beta/css/bootstrap-select.min.css">
 		<link rel="stylesheet" href="css/main.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
@@ -32,14 +33,14 @@
 					      <li class="nav-item">
 					        <a class="nav-link" href="battery.html">Battery</a>
 					      </li>
-					      <li class="nav-item">
-					        <a class="nav-link" href="exp.html">EXP</a>
+					      <li class="nav-item active">
+					        <a class="nav-link" href="#">EXP<span class="sr-only">(current)</span></a>
 					      </li>
 					      <li class="nav-item">
 					        <a class="nav-link" href="data.html">Data</a>
 					      </li>
-					      <li class="nav-item active">
-					        <a class="nav-link" href="#">Core <span class="sr-only">(current)</span></a>
+					      <li class="nav-item">
+					        <a class="nav-link" href="core.html">Core</a>
 					      </li>
 					      <li class="nav-item">
 					        <a class="nav-link disabled" href="#">Craft</a>
@@ -53,12 +54,13 @@
 					          <a class="dropdown-item whitetext" target="_blank" href="http://dmesse.egloos.com/3567918">Popular Levelling Routes</a>
 					          <a class="dropdown-item whitetext" target="_blank" href="https://docs.google.com/document/d/1itF-T3nXGixmM21zlkxg3kdd3WFdX-DNJk0X-DqNUoU/preview">All-in-One Encyclopedia</a>
 					          <a class="dropdown-item whitetext" target="_blank" href="https://www.reddit.com/r/girlsfrontline/comments/8q8mka/girls_frontline_en_uncensor_guide/">EN Uncensor Patch</a>
-					          <a class="dropdown-item disabled" target="" href="#">Corpse Dragging Basics</a>
 					          <a class="dropdown-item whitetext" target="_blank" href="https://cdn.discordapp.com/attachments/434610007858872321/443645817157582848/girls_frontline_v3.png">bible.png</a>
+					          <a class="dropdown-item disabled" target="" href="#">Corpse Dragging Basics</a>
+					          <span class="ml-4 citation whitetext">* Credits to the respective authors</span>
+					          <div class="dropdown-divider"></div>
 					          <a class="dropdown-item whitetext" target="_blank" href="
 					          https://discordapp.com/invite/5cVT49v"><img src="images/karboots.png" width="35" height="35" class="d-inline-block align-mid" alt="">
 					      		Karboots Discord</a>
-					          <a class="dropdown-item citation whitetext" href="#">* Credits to the respective authors</a>
 					        </div>
 					      </li>
 					    </ul>
@@ -75,16 +77,18 @@
 						<div class="col-sm-4">
 							<input type="text" maxlength="20" class="form-control" id="dollName" placeholder="Doll Name">
 						</div>
-						<div class="col-sm-2">
+						<div class="col-md-2">
 							<div class="input-group mb-3">
 							  <div class="input-group-prepend">
-							    <label class="input-group-text" for="dollRarity">Rarity</label>
+							    <label class="input-group-text" for="links">Links</label>
 							  </div>
-							  <select class="custom-select" id="dollRarity">
-							    <option selected>2*</option>
-								<option>3*</option>
-								<option>4*</option>
-								<option>5*</option>
+							  <select class="custom-select" id="links">
+							    <option selected>Auto</option>
+							    <option>x1</option>
+							    <option>x2</option>
+							    <option>x3</option>
+							    <option>x4</option>
+							    <option>x5</option>
 							  </select>
 							</div>
 						</div>
@@ -108,33 +112,58 @@
 							</div>
 						</div>
 					</div>
+					<div class="form-group row">
+						<div class="col-sm-8">
+							<input type="number" class="form-control" id="currentLvl" placeholder="Current Level">
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-sm-8">
+							<input type="number" class="form-control" id="currentXp" placeholder="Current XP">
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-sm-8">
+							<input type="number" class="form-control" id="goalLvl" placeholder="Goal Level">
+						</div>
+					</div>
 					<div class="row">
-						<div class="col-md-4">
+						<div class="col-md-2">
 							<div class="input-group mb-3">
-							  <div class="input-group-prepend">
-							    <label class="input-group-text" for="linkBefore">X</label>
-							  </div>
-							  <select class="custom-select" id="linkBefore">
-							    <option selected disabled>Current</option>
-							    <option value="1">1</option>
-							    <option value="2">2</option>
-							    <option value="3">3</option>
-							    <option value="4">4</option>
-							  </select>
+							  <select class="selectpicker show-tick input-group mb-3" data-live-search="true" id="mapName" title="Map">
+								 	<option>02</option>
+								 	<option>04</option>
+								 	<option>35</option>
+								 	<option>43e</option>
+								 	<option>54</option>
+								 	<option>56</option>
+								 	<option>52e</option>
+								</select>
+
 							</div>
 						</div>
-						<div class="col-md-4">
-							<div class="input-group mb-3">
-							  <div class="input-group-prepend">
-							    <label class="input-group-text" for="linkAfter">X</label>
-							  </div>
-							  <select class="custom-select" id="linkAfter">
-							    <option selected disabled>Goal</option>
-							    <option value="2">2</option>
-							    <option value="3">3</option>
-							    <option value="4">4</option>
-							    <option value="5">5</option>
-							  </select>
+						<div class="col-md-2 expSwitch">
+							<div class="form-group">  
+								 <span class="switch switch-sm">
+								    <input type="checkbox" class="switch" id="switchLeader">
+								    <label for="switchLeader" class="switchLbl">Leader</label>
+								 </span>
+							</div>
+						</div>
+						<div class="col-md-2 expSwitch">
+							<div class="form-group">  
+								 <span class="switch switch-sm">
+								    <input type="checkbox" class="switch" id="switchMvp">
+								    <label for="switchMvp" class="switchLbl">MVP</label>
+								 </span>
+							</div>
+						</div>
+						<div class="col-md-2 expSwitch">
+							<div class="form-group">  
+								 <span class="switch switch-sm">
+								    <input type="checkbox" class="switch" id="switchEvent">
+								    <label for="switchEvent" class="switchLbl">1.5x Event</label>
+								 </span>
 							</div>
 						</div>
 					</div>
@@ -146,14 +175,17 @@
 				</form>
 				<br>
 				<div class="table-responsive container col-lg-10 float-left">
-					<table class="solidborder table table-borderless table-hover" id="coreTable">
+					<table class="solidborder table table-borderless table-hover" id="expTable">
 					  <thead class="thead-dark center">
 					    <tr>
-					      <th class="pb-3" scope="col">Doll</th>
-					      <th class="pb-3" scope="col">Rarity</th>
-					      <th class="pb-3" scope="col">Current Link</th>
-					      <th class="pb-3" scope="col">Goal Link</th>
-					      <th scope="col"><img src="images/core.png" class="img-fluid dataicon" alt="Core" width="30">  Cores</th>
+					      <th scope="col">Doll</th>
+					      <th scope="col">Current</th>
+					      <th scope="col">Goal</th>
+					      <th scope="col">Map</th>
+					      <th scope="col">Base XP</th>
+					      <th scope="col">Penalty Lvl</th>
+					      <th scope="col">Required Battles</th>
+					      <th scope="col">Required Reports</th>
 					    </tr>
 					  </thead>
 					  <tfoot class="center">
@@ -162,10 +194,14 @@
 					      <td></td>
 					      <td></td>
 					      <td></td>
+					      <td></td>
+					      <td></td>
+					      <td>–</td>
 					      <td>–</td>
 					    </tr>
 					  </tfoot>
 					  <tbody class="center">
+					  	<tr>
 					  </tbody>
 					</table>
 					<div class="">
@@ -176,10 +212,11 @@
 
 		</main>
 
-		<script>var pageId=4</script>
+		<script>var pageId=2</script>
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.0-beta/js/bootstrap-select.min.js"></script>
 		<script src=js/events.js></script>
 	</body>
 

@@ -33,7 +33,7 @@
 					        <a class="nav-link" href="battery.html">Battery</a>
 					      </li>
 					      <li class="nav-item">
-					        <a class="nav-link disabled" href="#">EXP</a>
+					        <a class="nav-link" href="exp.html">EXP</a>
 					      </li>
 					      <li class="nav-item">
 					        <a class="nav-link" href="data.html">Data</a>
@@ -115,11 +115,22 @@
 				<div class="col">
 					<div class="jumbotron jumbotron-fluid pink">
 						<div class="container">
-							<h1 class="display-4">Hi!</h1>
-						  	<p class="lead">&lt;things to write here&gt;</p>
+							<h1 class="display-4">Welcome!</h1>
+						  	<p class="lead">This site contains several GF-related calculators. Hope it'll serve useful to you!</p>
 						  	<hr class="my-4">
-						  	<p>&lt;more stuff&gt;</p>
-						  	<a class="btn btn-secondary btn-md pink gray" href="#" role="button">ボタンちゃん</a>
+						  	<p>This is my first web-dev project, created when I was bored and learning html/css/js from scratch!<br><br>Do contact me via discord @ dthx2710#0165 if you spot any calculation/coding errors!</p>
+						  	<a class="btn btn-secondary btn-md pink whitetext" id="useless" role="button" data-toggle="tooltip" data-placement="right" title="This button does nothing" onclick="nihao()"">ボタンちゃん</a>
+						  	<span class="hide" id="nihao"><br>Nihao Shikikan!</span>
+						  	<script>function nihao(){
+						  		var nihao = document.getElementById("nihao");
+						  		if (nihao.className==""){
+						  			nihao.className="hide";
+						  		}
+						  		else{
+						  			nihao.className="";
+						  		}
+						  	}
+						  </script>
 						</div>
 					</div>
 				</div>

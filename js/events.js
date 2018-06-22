@@ -79,11 +79,427 @@ batteries you can collect daily, maximum error range ±2*/
 //--------------------------------------------------------------------------------------------------------------------------------------
 //exp.html
 function exp(){
+	var dollName = document.getElementById("dollName");
+	var linkCount = document.getElementById("links");
+	var dollCount = document.getElementById("dollCount");
+	var currentLevel = document.getElementById("currentLvl");
+	var currentXp = document.getElementById("currentXp");
+	var goalLvl = document.getElementById("goalLvl");
+	var mapName = document.getElementById("mapName");
+	var switchLeader = document.getElementById("switchLeader");
+	var switchMvp = document.getElementById("switchMvp");
+	var switchEvent = document.getElementById("switchEvent");
+	var addBtn = document.getElementById("addBtn");
+	var clearBtn = document.getElementById("clearBtn");
+	var dataTable = document.getElementById("dataTable");
+	var dollReqExpArray = [100,200,300,400,500,600,700,800,900,1000,
+	1100,1200,1300,1400,1500,1600,1700,1800,1900,2000,
+	2100,2200,2300,	2400,2500,2600,2800,3100,3400,4200,
+	4600,5000,5400,5800,6300,6700,7200,7700,8200,8800,
+	9300,9900,10500,11100,11800,12500,13100,13900,14600,15400,
+	16100,16900,17800,18600,19500,20400,21300,22300,23300,24300,
+	25300,26300,27400,28500,29600,30800,32000,33200,34400,45100,
+	46800,48600,50400,52200,54000,55900,57900,59800,61800,63900,
+	66000,68100,70300,72600,74800,77100,79500,81900,84300,112600,
+	116100,119500,123100,126700,130400,134100,137900,141800,145700];
+	var mapArray = [["0-2",490,112],["0-4",500,116],[["3-5"],[290],[50]],["4-3e",370,75],[["5-4"],[380],[80]],[["5-6"],[400],[85]],[["5-2e"],[410],[88]]]; //,[[""],[],[]]
+	var expTableBody= expTable.getElementsByTagName('tbody')[0];
+	var expTableFooter = expTable.getElementsByTagName('tfoot')[0];
 
+	function addRow(dollname,current,goal,map,basexp,penalty,reqbattles,reqreports)
+	{
+		expTableBody= expTable.getElementsByTagName('tbody')[0];
+		var row = expTableBody.insertRow(expTableBody.rows.length);
+		var dollCell = row.insertCell(0);
+		var currentCell = row.insertCell(1);		
+		var goalCell = row.insertCell(2);
+		var mapCell = row.insertCell(3);
+		var basexpCell = row.insertCell(4);
+		var penaltyCell = row.insertCell(5);
+		var reqbattlesCell = row.insertCell(6);
+		var reqreportsCell = row.insertCell(7);
+
+		var dollNode = document.createTextNode(dollname);
+		var currentNode = document.createTextNode(current);
+		var goalNode = document.createTextNode(goal);
+		var mapNode = document.createTextNode(map);
+		var basexpNode = document.createTextNode(basexp);
+		var penaltyNode = document.createTextNode(penalty);
+		var reqbattlesNode = document.createTextNode(reqbattles);
+		var reqreportsNode = document.createTextNode(reqreports);
+
+		dollCell.appendChild(dollNode);
+		currentCell.appendChild(currentNode);
+		goalCell.appendChild(goalNode);
+		mapCell.appendChild(mapNode);
+		basexpCell.appendChild(basexpNode);
+		penaltyCell.appendChild(penaltyNode);
+		reqbattlesCell.appendChild(reqbattlesNode);
+		reqreportsCell.appendChild(reqreportsNode);
+
+	}
+
+	function baseXpAfterPenalty(currentlvl,baseexp,penaltylvl){
+		var basexpaftpen = baseexp;
+		var penaltymultiplier = 0;
+		while(currentlvl>penaltylvl){
+			penaltymultiplier += 0.2;
+			if (penaltymultiplier==1)
+			{
+				basexpaftpen = 3;
+			}
+			else{
+				basexpaftpen = baseexp*(1-penaltymultiplier);
+			}
+			currentlvl-=10;
+		}
+		return basexpaftpen;
+	}
+
+	clearBtn.onclick=function(){
+		expTableBody = expTable.getElementsByTagName('tbody')[0];
+		var new_tbody = document.createElement('tbody');
+		new_tbody.className = "center";
+		expTableBody.parentNode.replaceChild(new_tbody, expTableBody);
+		expTableFooter.rows[0].cells[6].innerHTML="–";
+		expTableFooter.rows[0].cells[7].innerHTML="–";
+	}
+
+	function calculate(){
+		var totalBattles = 0;
+		var totalReports = 0;
+		for (var i = 0, row; row = expTableBody.rows[i]; ++i) {
+		   for (var j = 0, col; col = row.cells[j]; j++) {
+		   		if (j==6)
+		   		{
+		   			totalBattles += parseFloat(col.innerHTML);
+		   		}
+		   		else if (j==7)
+		   		{
+		   			totalReports += parseFloat(col.innerHTML);
+		   		}
+		   }
+		}
+		expTableFooter.rows[0].cells[6].innerHTML=totalBattles;
+		expTableFooter.rows[0].cells[7].innerHTML=totalReports;
+	}
+
+	function totalRequiredXp(startlvl,endlvl,currentxp){
+		var totalrequiredxp = 0;
+		var requiredXpArray = dollReqExpArray.slice(startlvl-1,endlvl-1);
+		requiredXpArray.forEach(i=>{
+				totalrequiredxp += i;
+			})
+		return totalrequiredxp-currentxp;
+	}
+
+	function noPenaltyBattles(currentlvl,goallvl,currentxp,links,ldr,mvp,event,baseexp){
+		var battles = 0;
+		var ldrmultiplier = 1;
+		var mvpmultiplier = 1;
+		var eventmultiplier = 1;
+		var autolink = false;
+		var linkmultiplier;
+		if (ldr){
+			ldrmultiplier = 1.2;
+		}
+		if (mvp){
+			mvpmultiplier =1.3;
+		}
+		if (event){
+			eventmultiplier =1.5;
+		}
+		switch (links){
+			case 0:
+				autolink = true;
+				break;
+			case 1:
+				linkmultiplier = 1;
+				break;
+			case 2:
+				linkmultiplier = 1.5;
+				break;
+			case 3:
+				linkmultiplier = 2;
+				break;
+			case 4:
+				linkmultiplier = 2.5;
+				break;
+			case 5:
+				linkmultiplier = 3;
+				break;
+		}
+		if (autolink){
+			//10,30,70,90
+			if (currentlvl>=1&&currentlvl<10){
+				linkmultiplier = 1
+				if (goallvl<=10){
+					battles += totalRequiredXp(currentlvl,goallvl,currentxp)/((baseexp*ldrmultiplier*mvpmultiplier*eventmultiplier)*linkmultiplier);
+					currentxp=0;
+					return battles;
+				}
+				else{
+					battles += totalRequiredXp(currentlvl,10,currentxp)/((baseexp*ldrmultiplier*mvpmultiplier*eventmultiplier)*linkmultiplier);
+					currentxp=0;
+					currentlvl = 10;
+				}
+			}
+			if (currentlvl>=10&&currentlvl<30){
+				linkmultiplier = 1.5
+				if (goallvl<=30){
+					battles += totalRequiredXp(currentlvl,goallvl,currentxp)/((baseexp*ldrmultiplier*mvpmultiplier*eventmultiplier)*linkmultiplier);
+					currentxp=0;
+					return battles;					
+				}
+				else{
+					battles += totalRequiredXp(currentlvl,30,currentxp)/((baseexp*ldrmultiplier*mvpmultiplier*eventmultiplier)*linkmultiplier);
+					currentxp=0;
+					currentlvl = 30;
+				}
+			}
+			if (currentlvl>=30&&currentlvl<70){
+				linkmultiplier = 2
+				if (goallvl<=70){
+					battles += totalRequiredXp(currentlvl,goallvl,currentxp)/((baseexp*ldrmultiplier*mvpmultiplier*eventmultiplier)*linkmultiplier);
+					currentxp=0;
+					return battles;
+				}
+				else{
+					battles += totalRequiredXp(currentlvl,70,currentxp)/((baseexp*ldrmultiplier*mvpmultiplier*eventmultiplier)*linkmultiplier);
+					currentxp=0;
+					currentlvl = 70;
+				}
+			}
+			if (currentlvl>=70&&currentlvl<90){
+				linkmultiplier = 2.5
+				if (goallvl<=90){
+					battles += totalRequiredXp(currentlvl,goallvl,currentxp)/((baseexp*ldrmultiplier*mvpmultiplier*eventmultiplier)*linkmultiplier);
+					currentxp=0;
+					return battles;
+				}
+				else{
+					battles += totalRequiredXp(currentlvl,90,currentxp)/((baseexp*ldrmultiplier*mvpmultiplier*eventmultiplier)*linkmultiplier);
+					currentxp=0;
+					currentlvl = 90;
+				}
+			}
+			if (currentlvl>=90&&currentlvl<100){
+				linkmultiplier = 3
+				battles += totalRequiredXp(currentlvl,goallvl,currentxp)/((baseexp*ldrmultiplier*mvpmultiplier*eventmultiplier)*linkmultiplier);
+			}
+		}
+		else{
+			battles = totalRequiredXp(currentlvl,goallvl,currentxp)/((baseexp*ldrmultiplier*mvpmultiplier*eventmultiplier)*linkmultiplier);
+		}
+		return battles;
+	}
+
+	function penaltyBattles(currentlvl,goallvl,currentxp,links,ldr,mvp,event,baseexp,penaltylvl){
+		var battles = 0;
+		var ldrmultiplier = 1;
+		var mvpmultiplier = 1;
+		var eventmultiplier = 1;
+		var autolink = false;
+		var linkmultiplier;
+		var penaltymultiplier;
+		if (ldr){
+			ldrmultiplier = 1.2;
+		}
+		if (mvp){
+			mvpmultiplier =1.3;
+		}
+		if (event){
+			eventmultiplier =1.5;
+		}
+		switch (links){
+			case 0:
+				autolink = true;
+				break;
+			case 1:
+				linkmultiplier = 1;
+				break;
+			case 2:
+				linkmultiplier = 1.5;
+				break;
+			case 3:
+				linkmultiplier = 2;
+				break;
+			case 4:
+				linkmultiplier = 2.5;
+				break;
+			case 5:
+				linkmultiplier = 3;
+				break;
+		}
+		if (autolink){
+			//10,30,70,90
+			if (currentlvl>=1&&currentlvl<10){
+				linkmultiplier = 1
+				if (goallvl<=10){
+					var now = currentlvl;
+					var end = goallvl;
+					while (now<end){
+						battles += totalRequiredXp(now,++now,currentxp)/((baseXpAfterPenalty(now,baseexp,penaltylvl)*ldrmultiplier*mvpmultiplier*eventmultiplier)*linkmultiplier)
+					}
+					currentxp=0;
+					return battles;
+				}
+				else{
+					var now = currentlvl;
+					var end = 10;
+					while (now<end){
+						battles += totalRequiredXp(now,++now,currentxp)/((baseXpAfterPenalty(now,baseexp,penaltylvl)*ldrmultiplier*mvpmultiplier*eventmultiplier)*linkmultiplier)
+					}
+					currentxp=0;
+					currentlvl = 10;
+				}
+			}
+			if (currentlvl>=10&&currentlvl<30){
+				linkmultiplier = 1.5
+				if (goallvl<=30){
+					var now = currentlvl;
+					var end = goallvl;
+					while (now<end){
+						battles += totalRequiredXp(now,++now,currentxp)/((baseXpAfterPenalty(now,baseexp,penaltylvl)*ldrmultiplier*mvpmultiplier*eventmultiplier)*linkmultiplier)
+					}
+					currentxp=0;
+					return battles;					
+				}
+				else{
+					var now = currentlvl;
+					var end = 30;
+					while (now<end){
+						battles += totalRequiredXp(now,++now,currentxp)/((baseXpAfterPenalty(now,baseexp,penaltylvl)*ldrmultiplier*mvpmultiplier*eventmultiplier)*linkmultiplier)
+					}
+					currentxp=0;
+					currentlvl = 30;
+				}
+			}
+			if (currentlvl>=30&&currentlvl<70){
+				linkmultiplier = 2
+				if (goallvl<=70){
+					var now = currentlvl;
+					var end = goallvl;
+					while (now<end){
+						battles += totalRequiredXp(now,++now,currentxp)/((baseXpAfterPenalty(now,baseexp,penaltylvl)*ldrmultiplier*mvpmultiplier*eventmultiplier)*linkmultiplier)
+					}
+					currentxp=0;
+					return battles;
+				}
+				else{
+					var now = currentlvl;
+					var end = 70;
+					while (now<end){
+						battles += totalRequiredXp(now,++now,currentxp)/((baseXpAfterPenalty(now,baseexp,penaltylvl)*ldrmultiplier*mvpmultiplier*eventmultiplier)*linkmultiplier)
+					}
+					currentxp=0;
+					currentlvl = 70;
+				}
+			}
+			if (currentlvl>=70&&currentlvl<90){
+				linkmultiplier = 2.5
+				if (goallvl<=90){
+					var now = currentlvl;
+					var end = goallvl;
+					while (now<end){
+						battles += totalRequiredXp(now,++now,currentxp)/((baseXpAfterPenalty(now,baseexp,penaltylvl)*ldrmultiplier*mvpmultiplier*eventmultiplier)*linkmultiplier)
+					}
+					currentxp=0;
+					return battles;
+				}
+				else{
+					var now = currentlvl;
+					var end = 90;
+					while (now<end){
+						battles += totalRequiredXp(now,++now,currentxp)/((baseXpAfterPenalty(now,baseexp,penaltylvl)*ldrmultiplier*mvpmultiplier*eventmultiplier)*linkmultiplier)
+					}
+					currentxp=0;
+					currentlvl = 90;
+				}
+			}
+			if (currentlvl>=90&&currentlvl<100){
+				linkmultiplier = 3
+				var now = currentlvl
+				var end = goallvl
+				while (now<end){
+					battles += totalRequiredXp(now,++now,currentxp)/((baseXpAfterPenalty(now,baseexp,penaltylvl)*ldrmultiplier*mvpmultiplier*eventmultiplier)*linkmultiplier)
+				}
+			}
+		}
+
+		else{
+			penaltymultiplier = 0;
+			penaltyovershot = penaltylvl;
+			do{
+				penaltymultiplier += 0.2;
+				if (penaltymultiplier==1)
+				{
+					battles+= totalRequiredXp(penaltyovershot,goallvl,currentxp)/3; //when 100% penalty, lowest is 3xp
+				}
+				else{
+					if (goallvl>penaltyovershot+10){
+						battles+= totalRequiredXp(penaltyovershot,penaltyovershot+10,currentxp)/(((baseexp*ldrmultiplier*mvpmultiplier*eventmultiplier)*linkmultiplier)*(1-penaltymultiplier));
+					}
+					else{
+						battles+= totalRequiredXp(penaltyovershot,goallvl,currentxp)/(((baseexp*ldrmultiplier*mvpmultiplier*eventmultiplier)*linkmultiplier)*(1-penaltymultiplier));
+					}
+				}
+				currentxp=0;
+				penaltyovershot+=10;
+			}while (goallvl>penaltyovershot); //cross penalty lvl = -20% xp, every 10 lvls after -20% more xp
+		}
+		return battles;
+	}
+
+
+	addBtn.onclick=function(){
+		var name = dollName.value;
+		var links=linkCount.selectedIndex; //0=auto
+		var count = document.getElementById("dollCount").selectedIndex+1;
+		var currentlvl = parseFloat(currentLevel.value)||0;
+		var currentxp = parseFloat(currentXp.value)||0;
+		var goallvl = parseFloat(goalLvl.value)||0;
+		var mapnumber = mapName.selectedIndex-1;
+		var boolldr = switchLeader.checked;
+		var boolmvp = switchMvp.checked;
+		var boolevent = switchEvent.checked;
+		if (mapnumber<0||currentlvl<1||currentxp<0||goallvl<=currentlvl||goallvl>100||currentxp>(dollReqExpArray[currentlvl-1])-1){
+			alert("Please verify input fields");
+			return;
+		}
+		//xp calculation
+		var mapname = mapArray[mapnumber][0];
+		var basexp = mapArray[mapnumber][1];
+		var penaltylvl = mapArray[mapnumber][2];
+		var reqbattles = 0;
+
+		if (goallvl > penaltylvl && currentlvl<penaltylvl){
+			//battles with mixed penalty
+			reqbattles = Math.ceil(noPenaltyBattles(currentlvl,penaltylvl,currentxp,links,boolldr,boolmvp,boolevent,basexp)+
+			penaltyBattles(penaltylvl,goallvl,currentxp,links,boolldr,boolmvp,boolevent,basexp,penaltylvl));
+		}
+		else if(goallvl>penaltylvl && currentlvl>penaltylvl){
+			//battles with all penalty
+			reqbattles = Math.ceil(penaltyBattles(currentlvl,goallvl,currentxp,links,boolldr,boolmvp,boolevent,basexp,penaltylvl));
+		}
+		else{
+			//battles with no penalty
+			reqbattles = Math.ceil(noPenaltyBattles(currentlvl,goallvl,currentxp,links,boolldr,boolmvp,boolevent,basexp));
+		}
+
+		var reqreports = Math.ceil(totalRequiredXp(currentlvl,goallvl,currentxp)/3000);
+		for (var i=0;i<count;++i){
+			if (!name){
+				name = "Doll "+ ((expTable.rows.length)-1).toString();
+			}
+			addRow(name,currentlvl,goallvl,mapname,basexp,penaltylvl,reqbattles,reqreports);
+			dollName.value = "";
+			document.getElementById("dollCount").selectedIndex=0;
+			name = ""
+			calculate();
+		}
+	}
 }
-
-
-
 //--------------------------------------------------------------------------------------------------------------------------------------
 //data.html
 function data(){
@@ -199,7 +615,7 @@ function data(){
 		var energy = 0;
 		//separating data
 
-		if (before<=after&&before>0&&count<11){
+		if (before<=after&&before>0){
 			var requiredDataArray = dataArray.slice(before-1,after);
 			requiredDataArray.forEach(i=>{
 				if (i[0]=='basic'){
@@ -222,13 +638,15 @@ function data(){
 		   		energy += (int/(98/2));
 		   		energy += (adv/(53/3));
 		   		energy = (Math.round(energy * 100) / 100);
-		   		console.log(energy);
 				addRow(name,basic,int,adv,hours,energy);
 				dollName.value = "";
 				document.getElementById("dollCount").selectedIndex=0;
 				name = ""
 				calculate();
 			}
+		}
+		else{
+			alert("Please select correct skill levels");
 		}
 	}
 }
@@ -306,12 +724,10 @@ function core(){
 		var cores = 0;
 		//separating core
 
-		if (before<=after&&before>0&&count<11){
+		if (before<=after&&before>0){
 			var requiredLinkArray = linkArray.slice(before-1,after);
-			console.log(requiredLinkArray);
 			requiredLinkArray.forEach(i=>{
 				cores += i*rarityArray[rarity-2];
-				console.log(cores);
 			})
 			for (var i=0;i<count;++i){
 				if (!name){
@@ -323,6 +739,9 @@ function core(){
 				name = ""
 				calculate();
 			}
+		}
+		else{
+			alert("Please select correct doll links");
 		}
 	}
 
