@@ -102,7 +102,9 @@ function exp(){
 	46800,48600,50400,52200,54000,55900,57900,59800,61800,63900,
 	66000,68100,70300,72600,74800,77100,79500,81900,84300,112600,
 	116100,119500,123100,126700,130400,134100,137900,141800,145700];
-	var mapArray = [["0-2",490,112],["0-4",500,116],[["3-5"],[290],[50]],["4-3e",370,75],[["5-4"],[380],[80]],[["5-6"],[400],[85]],[["5-2e"],[410],[88]]]; //,[[""],[],[]]
+	var mapArray = [["0-1",480,100],["0-2",490,112],["0-3",500,100],["0-4",500,116],
+	["1-2",160,15],["2-3",220,30],["2-1e",250,35],["3-5",290,50],["4-3e",370,75],["5-4",380,80],
+	["5-6",400,85],["5-2e",410,88],["5-4e",430,93]]; //,["",,]
 	var expTableBody= expTable.getElementsByTagName('tbody')[0];
 	var expTableFooter = expTable.getElementsByTagName('tfoot')[0];
 
@@ -488,11 +490,35 @@ function exp(){
 		}
 
 		var reqreports = Math.ceil(totalRequiredXp(currentlvl,goallvl,currentxp)/3000);
+
+		var bonus = "";
+		if (boolldr||boolmvp||boolevent){
+			bonus = "[";
+			if (boolldr){
+				bonus+="LDR"
+				if (boolmvp||boolevent){
+					bonus+="+"
+				}
+			}
+			if (boolmvp){
+				bonus+="MVP";
+				if (boolevent){
+					bonus+="+";
+				}
+			}
+			if (boolevent){
+				bonus+="1.5x";
+			}
+			bonus+="]";
+		}
+
+
+
 		for (var i=0;i<count;++i){
 			if (!name){
 				name = "Doll "+ ((expTable.rows.length)-1).toString();
 			}
-			addRow(name,currentlvl,goallvl,mapname,basexp,penaltylvl,reqbattles,reqreports);
+			addRow(bonus+name,currentlvl,goallvl,mapname,basexp,penaltylvl,reqbattles,reqreports);
 			dollName.value = "";
 			document.getElementById("dollCount").selectedIndex=0;
 			name = ""
