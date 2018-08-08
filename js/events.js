@@ -154,7 +154,7 @@ function exp(){
 		console.log('penalty: ',penaltymultiplier)
 		if (penaltymultiplier>=1)
 		{
-			return 3;
+			return 5;
 		}
 		else{
 			return baseexp*(1-penaltymultiplier);
@@ -447,7 +447,7 @@ function exp(){
 				penaltymultiplier += 0.2;
 				if (penaltymultiplier==1)
 				{
-					battles+= totalRequiredXp(penaltyovershot,goallvl,currentxp)/3; //when 100% penalty, lowest is 3xp
+					battles+= totalRequiredXp(penaltyovershot,goallvl,currentxp)/3; //when 100% penalty, lowest is 5xp
 				}
 				else{
 					if (goallvl>penaltyovershot+10){
