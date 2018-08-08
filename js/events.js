@@ -144,20 +144,21 @@ function exp(){
 	}
 
 	function baseXpAfterPenalty(currentlvl,baseexp,penaltylvl){
-		var basexpaftpen = baseexp;
-		var penaltymultiplier = 0;
+		var penaltymultiplier = 0.0;
+		console.log('currentlvl: ',currentlvl)
 		while(currentlvl>penaltylvl){
 			penaltymultiplier += 0.2;
-			if (penaltymultiplier>=1)
-			{
-				return 3;
-			}
-			else{
-				basexpaftpen = baseexp*(1-penaltymultiplier);
-			}
 			currentlvl-=10;
 		}
-		return basexpaftpen;
+
+		console.log('penalty: ',penaltymultiplier)
+		if (penaltymultiplier>=1)
+		{
+			return 3;
+		}
+		else{
+			return baseexp*(1-penaltymultiplier);
+		}
 	}
 
 	clearBtn.onclick=function(){
@@ -490,7 +491,7 @@ function exp(){
 			reqbattles = Math.ceil(noPenaltyBattles(currentlvl,penaltylvl,currentxp,links,boolldr,boolmvp,boolevent,basexp)+
 			penaltyBattles(penaltylvl,goallvl,currentxp,links,boolldr,boolmvp,boolevent,basexp,penaltylvl));
 		}
-		else if(goallvl>penaltylvl && currentlvl>penaltylvl){
+		else if(goallvl>penaltylvl && currentlvl>=penaltylvl){
 			//battles with all penalty
 			reqbattles = Math.ceil(penaltyBattles(currentlvl,goallvl,currentxp,links,boolldr,boolmvp,boolevent,basexp,penaltylvl));
 		}
