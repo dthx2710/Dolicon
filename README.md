@@ -19,8 +19,11 @@ To do list:
 - Exp calculator QOL stuff (removing entries)
 Send ideas if you have any!
 
+&nbsp;
+
 Changelog
 22 June 2018:
 v1.0! index, battery, data, core, resources usable now
+&nbsp;
 8 August 2018:
 v1.1 Added levels 100-120, fixed 2 calculation errors
