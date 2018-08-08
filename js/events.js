@@ -147,12 +147,12 @@ function exp(){
 		var basexpaftpen = baseexp;
 		var penaltymultiplier = 0;
 		while(currentlvl>penaltylvl){
-			if (penaltymultiplier==1)
+			penaltymultiplier += 0.2;
+			if (penaltymultiplier>=1)
 			{
 				return 3;
 			}
 			else{
-				penaltymultiplier += 0.2;
 				basexpaftpen = baseexp*(1-penaltymultiplier);
 			}
 			currentlvl-=10;
@@ -287,7 +287,7 @@ function exp(){
 					currentlvl = 90;
 				}
 			}
-			if (currentlvl>=90&&currentlvl<100){
+			if (currentlvl>=90){
 				linkmultiplier = 3
 				battles += totalRequiredXp(currentlvl,goallvl,currentxp)/((baseexp*ldrmultiplier*mvpmultiplier*eventmultiplier)*linkmultiplier);
 			}
@@ -356,6 +356,7 @@ function exp(){
 					}
 					currentxp=0;
 					currentlvl = 10;
+
 				}
 			}
 			if (currentlvl>=10&&currentlvl<30){
@@ -421,7 +422,7 @@ function exp(){
 					currentlvl = 90;
 				}
 			}
-			if (currentlvl>=90&&currentlvl<100){
+			if (currentlvl>=90){
 				linkmultiplier = 3
 				var now = currentlvl
 				var end = goallvl
