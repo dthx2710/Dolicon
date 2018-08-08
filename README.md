@@ -15,13 +15,13 @@ To do list ✔:
 - [x] Resources navbar ddl
 - [x] Karboots discord invite
 - [x] Level 100-120 for exp calculator
-- Add more maps for exp calculator
-- Exp calculator QOL stuff (removing entries)
+- [] Add more maps for exp calculator
+- [] Exp calculator QOL stuff (removing entries)
 Send ideas if you have any!
 
 &nbsp;
 
-######Changelog
+##Changelog
 &nbsp;
 
 **22 June 2018:**
