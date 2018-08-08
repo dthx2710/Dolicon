@@ -21,7 +21,9 @@ Send ideas if you have any!
 
 &nbsp;
 
-Changelog
+######Changelog
+&nbsp;
+
 22 June 2018:
 v1.0! index, battery, data, core, resources usable now
 &nbsp;
