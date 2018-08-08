@@ -474,7 +474,7 @@ function exp(){
 		var boolldr = switchLeader.checked;
 		var boolmvp = switchMvp.checked;
 		var boolevent = switchEvent.checked;
-		if (mapnumber<0||currentlvl<1||currentxp<0||goallvl<=currentlvl||goallvl>100||currentxp>(dollReqExpArray[currentlvl-1])-1){
+		if (mapnumber<0||currentlvl<1||currentxp<0||goallvl<=currentlvl||goallvl>120||currentxp>(dollReqExpArray[currentlvl-1])-1){
 			alert("Please verify input fields");
 			return;
 		}

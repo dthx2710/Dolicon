@@ -14,8 +14,13 @@ To do list:
 - Doll/EQ crafting recipe (dropped/TBA)
 - Resources navbar ddl ✔
 - Karboots discord invite ✔
+- Level 100-120 for exp calculator ✔
 - Add more maps for exp calculator
+- Exp calculator QOL stuff (removing entries)
 Send ideas if you have any!
 
+Changelog
 22 June 2018:
 v1.0! index, battery, data, core, resources usable now
+8 August 2018:
+v1.1 Added levels 100-120, fixed 2 calculation errors
